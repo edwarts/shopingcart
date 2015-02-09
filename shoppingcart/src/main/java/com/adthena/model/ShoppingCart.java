@@ -22,14 +22,17 @@ public class ShoppingCart implements iShoppingCart{
 		
 	}
 
-	public double calculateTotal(iDiscountStrategy discountS) {
+	//inject the dependency in the method's parameter is the lowest level of coupling
+	//in scala is easy to return a tuple because we just need two subtotal price
+	public double[] calculateTotal(iDiscountStrategy discountS) {
 		// TODO Auto-generated method stub
 	    if(carts.isEmpty())
 	    {
-		return 0;
+		return new double[]{0,0};
 	    }
 	    else {
 	    	double totalPrice=0.0;
+	    	double subtotalPrice=0.0;
 	    	HashMap<String, Double> discoutnList=discountS.getPriceAfterDiscount();//use the HashMap here is to get the fast retrieve of the discount
 	    	while(carts.entrySet().iterator().hasNext())
 	    	{
@@ -41,15 +44,23 @@ public class ShoppingCart implements iShoppingCart{
 	    		else {
 	    			totalPrice+=oneProduct.getKey().getProductPrice()*oneProduct.getValue();
 				}
+	    		subtotalPrice+=oneProduct.getKey().getProductPrice()*oneProduct.getValue();
 	    	}
 	    	
-	    	return totalPrice;
+	    	return new double[]{subtotalPrice,totalPrice};
 		}
 	   
 	}
 
 	public void showShoppingCartContent(iDiscountStrategy discountS) {
 		// TODO Auto-generated method stub
+		double[] priceToShow=calculateTotal(discountS);
+		System.out.println("Subtotal:"+priceToShow[0]);
+		String discountInfo=discountS.showDiscountContent();
+		System.out.println(discountInfo);
+		System.out.println("Total:"+priceToShow[1]);
+		
+		
 		
 	}
 

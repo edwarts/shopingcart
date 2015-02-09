@@ -6,7 +6,7 @@ import com.adthena.model.inferces.iProductFactory;
 public class ProductFactory implements iProductFactory {
 
 	//this is only a mock
-	//real product list will be tr
+	//real product list will be retrieve from DB or other storage service
 	public iProduct getProduct(String instanceName) {
 		switch (instanceName) {
 		case "Apple":
