@@ -14,12 +14,26 @@ public class ShoppingCart implements iShoppingCart{
 	//this is simple shoppingcart and we do not have a rule to generate the product id
 	public void add(iProduct product,int qty) {
 		// TODO Auto-generated method stub
-		carts.put(product, Integer.valueOf(qty));
+		if(carts.containsKey(product))
+		{
+			//exist
+			int tmpQty=carts.get(product).intValue();
+			carts.remove(product);
+			carts.put(product, tmpQty+qty);
+			
+		}
+		else {
+			carts.put(product, Integer.valueOf(qty));
+		}
+		
 		
 	}
 
-	public void remove(iProduct prodcut) {
-		carts.remove(prodcut);
+	public void remove(iProduct product) {
+		if(carts.containsKey(product))
+		{
+		carts.remove(product);
+		}
 		
 	}
 
