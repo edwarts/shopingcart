@@ -1,5 +1,9 @@
 package com.adthena;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import com.adthena.model.AppleOnlyDiscount;
 import com.adthena.model.ProductFactory;
 import com.adthena.model.ShoppingCartFactory;
@@ -19,14 +23,14 @@ public class App
         iProductFactory ipf=new ProductFactory();
         iDiscountStrategy ids=new AppleOnlyDiscount();
         do {
+        	  input="";
         	  input=System.console().readLine();
+        	  if(input=="exit")
+        		  System.exit(0);
               if(InputHelper.validate(input)==0)
               {
               	System.out.println("Invalidate Input");
               }
-              else if (InputHelper.validate(input)==1){
-				
-			 }
               else if (InputHelper.validate(input)==2) {
 				String[] product=InputHelper.splitInputBySpace(input);
 				for(String oneProduct:product)
@@ -36,8 +40,19 @@ public class App
 				isc.calculateTotal( ids);
 				isc.showShoppingCartContent(ids);
 			}
+              else if (InputHelper.validate(input)==1) {
+  				HashMap<String, Integer> product=InputHelper.splitInputProductAndQtyByGommaAndSpace(input);
+  				Iterator<Entry<String, Integer>> it=product.entrySet().iterator();
+  				while(it.hasNext())
+  				{
+  					Entry<String, Integer> oneProduct=it.next();
+  					isc.add(ipf.getProduct(oneProduct.getKey()), oneProduct.getValue());
+  				}
+  				isc.calculateTotal( ids);
+  				isc.showShoppingCartContent(ids);
+  			}
               
-		} while (input=="exit");
+		} while (true);
       
     }
 }

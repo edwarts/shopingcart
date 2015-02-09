@@ -73,7 +73,13 @@ public class ShoppingCart implements iShoppingCart{
 		double[] priceToShow=calculateTotal(discountS);
 		System.out.println("Subtotal:"+priceToShow[0]);
 		String discountInfo=discountS.showDiscountContent();
+		if(priceToShow[0]!=priceToShow[1])
+		{
 		System.out.println(discountInfo);
+		}
+		else {
+			System.out.println("(No offers available)");
+		}
 		System.out.println("Total:"+priceToShow[1]);
 		
 		

@@ -21,7 +21,7 @@ public class AppleOnlyDiscount implements iDiscountStrategy {
 	@Override
 	public String showDiscountContent() {
 		// TODO Auto-generated method stub
-		return "Apples have a 10%";
+		return "Apples have a 10% off";
 	}
 
 }
