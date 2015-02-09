@@ -8,6 +8,7 @@ To Run pleas use the shoppingcart-1.0-SNAPSHOT.one-jar.jar under target/
 To Run pleas use the command java -jar shoppingcart-1.0-SNAPSHOT.one-jar.jar
 
 To input please input the item name or item name coming with qty. If you use one item at one oline , please use the item and backspace
+PLease checkout the dev branch
 
 Here is some output
 Example Input
