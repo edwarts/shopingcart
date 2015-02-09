@@ -55,12 +55,12 @@ public class ShoppingCart implements iShoppingCart{
 	    		Entry<iProduct,Integer> oneProduct=it.next();
 	    		if(discoutnList.containsKey(oneProduct.getKey().getProductName()))
 	    		{
-	    			totalPrice+=oneProduct.getKey().getProductPrice()*discoutnList.get(oneProduct.getKey().getProductName())*oneProduct.getValue();
+	    			totalPrice+=oneProduct.getKey().getProductPrice()*discoutnList.get(oneProduct.getKey().getProductName())*(double)oneProduct.getValue();
 	    		}
 	    		else {
-	    			totalPrice+=oneProduct.getKey().getProductPrice()*oneProduct.getValue();
+	    			totalPrice+=oneProduct.getKey().getProductPrice()*(double)oneProduct.getValue();
 				}
-	    		subtotalPrice+=oneProduct.getKey().getProductPrice()*oneProduct.getValue();
+	    		subtotalPrice+=oneProduct.getKey().getProductPrice()*(double)oneProduct.getValue();
 	    	}
 	    	
 	    	return new double[]{subtotalPrice,totalPrice};
