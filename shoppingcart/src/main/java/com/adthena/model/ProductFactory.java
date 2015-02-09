@@ -14,7 +14,7 @@ public class ProductFactory implements iProductFactory {
 		case "Milk":
 			return new Product("Milk", 0.65);
 		case "Bread":
-			return new Product("Apple", 0.8);
+			return new Product("Bread", 0.8);
 		case "Soup":
 			return new Product("Soup", 1.0);
 		default:

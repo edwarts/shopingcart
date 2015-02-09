@@ -5,7 +5,6 @@ import com.adthena.model.inferces.iShoppingCartFactory;
 
 public class ShoppingCartFactory implements iShoppingCartFactory {
 
-	@Override
 	public iShoppingCart getShoppingCart(String instanceName) {
 		//we can have a range of implementation of shopping cart, the hashmap one is the basic
 		switch (instanceName) {

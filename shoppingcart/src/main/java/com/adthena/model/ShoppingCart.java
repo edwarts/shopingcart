@@ -1,6 +1,7 @@
 package com.adthena.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
 import com.adthena.model.inferces.iDiscountStrategy;
@@ -34,12 +35,13 @@ public class ShoppingCart implements iShoppingCart{
 	    	double totalPrice=0.0;
 	    	double subtotalPrice=0.0;
 	    	HashMap<String, Double> discoutnList=discountS.getPriceAfterDiscount();//use the HashMap here is to get the fast retrieve of the discount
-	    	while(carts.entrySet().iterator().hasNext())
+	    	Iterator<Entry<iProduct, Integer>> it=carts.entrySet().iterator();
+	    	while(it.hasNext())
 	    	{
-	    		Entry<iProduct,Integer> oneProduct=carts.entrySet().iterator().next();
+	    		Entry<iProduct,Integer> oneProduct=it.next();
 	    		if(discoutnList.containsKey(oneProduct.getKey().getProductName()))
 	    		{
-	    			totalPrice+=oneProduct.getKey().getProductPrice()*discoutnList.get(oneProduct.getKey())*oneProduct.getValue();
+	    			totalPrice+=oneProduct.getKey().getProductPrice()*discoutnList.get(oneProduct.getKey().getProductName())*oneProduct.getValue();
 	    		}
 	    		else {
 	    			totalPrice+=oneProduct.getKey().getProductPrice()*oneProduct.getValue();
